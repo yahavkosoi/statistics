@@ -19,15 +19,16 @@ def main():
 
     stats = Statistics(frequency_table_variable, x_label, f_label)
 
-    checkboxes = [do_median, do_average, do_frequent, do_pie_chart, do_bar_graph, do_frequency_table]
-    checkboxes_indexes = ["median", "average", "frequent", "pie_chart", "bar_graph", "frequency_table"]
+    checkboxes = [do_median, do_average, do_frequent, do_pie_chart, do_bar_graph, do_frequency_table,
+                  do_frequency_table_percentage]
+    checkboxes_indexes = ["median", "average", "frequent", "pie_chart", "bar_graph", "frequency_table",
+                          "frequency_table_percentage"]
     dos = []
     for i, checkbox in enumerate(checkboxes):
         if checkbox.get() == 1:
             dos.append(checkboxes_indexes[i])
 
     for do in dos:
-        print(do)
         exec(do + "(stats)")
 
 
@@ -70,6 +71,10 @@ def frequency_table(stats):
     stats.show_frequency_table()
 
 
+def frequency_table_percentage(stats):
+    stats.show_percentage_frequency_table()
+
+
 x_row_label = Label(root, text="x row: ")
 f_row_label = Label(root, text="f row: ")
 
@@ -93,6 +98,7 @@ do_frequent = IntVar()
 do_pie_chart = IntVar()
 do_bar_graph = IntVar()
 do_frequency_table = IntVar()
+do_frequency_table_percentage = IntVar()
 
 do_median_checkbox = Checkbutton(root, text="median", variable=do_median)
 do_average_checkbox = Checkbutton(root, text="average", variable=do_average)
@@ -100,6 +106,8 @@ do_frequent_checkbox = Checkbutton(root, text="frequent", variable=do_frequent)
 do_pie_chart_checkbox = Checkbutton(root, text="pie chart", variable=do_pie_chart)
 do_bar_graph_checkbox = Checkbutton(root, text="bar graph", variable=do_bar_graph)
 do_frequency_table_checkbox = Checkbutton(root, text="frequency table", variable=do_frequency_table)
+do_frequency_table_percentage_checkbox = Checkbutton(root, text="frequency table percentage",
+                                                     variable=do_frequency_table_percentage)
 
 x_row_label.grid(row=1, column=0)
 f_row_label.grid(row=2, column=0)
@@ -118,5 +126,6 @@ do_frequent_checkbox.grid(row=6, column=0)
 do_pie_chart_checkbox.grid(row=7, column=0)
 do_bar_graph_checkbox.grid(row=8, column=0)
 do_frequency_table_checkbox.grid(row=9, column=0)
+do_frequency_table_percentage_checkbox.grid(row=10, column=0)
 
 root.mainloop()

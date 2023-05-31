@@ -54,6 +54,12 @@ class Statistics:
 
         self.frequency_percentages = []
         self.frequency_percentages_for_pie_chart = []
+        self.frequency_percentages_for_frequency_table = {}
+        for key in self.frequency_table.keys():
+            percentage = str(self.frequency_table[key] / self.length * 100)
+            dot = percentage.find(".")
+            percentage = percentage[:(dot + 2)]
+            self.frequency_percentages_for_frequency_table[key] = float(percentage)
         for item in self.frequency_table.items():
             percentage = item[1] / self.length * 100
             self.frequency_percentages.append(f"{item[0]}: {percentage}%")
@@ -101,6 +107,28 @@ class Statistics:
         for i, key in enumerate(keys):
             img_draw.text((50 * i + 10, 15), str(key), font=font, fill=(0, 0, 0))
             img_draw.text((50 * i + 10, 65), str(self.frequency_table[key]), font=font, fill=(0, 0, 0))
+        img.show()
+
+    def show_percentage_frequency_table(self):
+        number_of_values = len(self.frequency_table.keys())
+        length_of_image = (number_of_values) * 65 + 150
+        img = Image.new("RGB", (length_of_image, 100), (255, 255, 255))
+        img_draw = ImageDraw.Draw(img)
+        img_draw.line(((0, 50), (length_of_image, 50)), fill="black", width=0)
+        for i in range(1, number_of_values + 1):
+            img_draw.line(((i * 65, 0), (i * 65, 100)), fill="black")
+        font = ImageFont.truetype("/System/Library/Fonts/NewYork.ttf", 20)
+        x_label = self.x
+        img_draw.text((length_of_image - 150 + 10, 15), x_label, font=font, fill=(0, 0, 0))
+        f_label = self.f
+        img_draw.text((length_of_image - 150 + 10, 65), f_label, font=font, fill=(0, 0, 0))
+
+        keys = list(self.frequency_table.keys())
+        keys = self.bubble_sort(keys)
+        for i, key in enumerate(keys):
+            img_draw.text((65 * i + 10, 15), str(key), font=font, fill=(0, 0, 0))
+            img_draw.text((65 * i + 10, 65), str(self.frequency_percentages_for_frequency_table[key]) + "%", font=font,
+                          fill=(0, 0, 0))
         img.show()
 
 
