@@ -1,7 +1,6 @@
 from tkinter import *
 from .statistics_python import Statistics
 from .login import login
-import statistics_yahav.wrapper
 
 
 def main():
@@ -232,4 +231,5 @@ if __name__ == '__main__':
         main()
     elif app == "mashov":
         login()
+        import statistics_yahav.wrapper
         mashov()
