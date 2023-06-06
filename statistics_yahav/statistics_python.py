@@ -128,7 +128,10 @@ class Statistics:
         img_draw.line(((0, 50), (length_of_image, 50)), fill="black", width=0)
         for i in range(1, number_of_values + 1):
             img_draw.line(((i * 50, 0), (i * 50, 100)), fill="black")
-        font = ImageFont.truetype("/fonts/NewYork.ttf", 20)
+        try:
+            font = ImageFont.truetype("/fonts/NewYork.ttf", 20)
+        except:
+            font = ImageFont.truetype("fonts\\NewYork.ttf", 20)
         x_label = self.x
         img_draw.text((length_of_image - 150 + 10, 15), x_label, font=font, fill=(0, 0, 0))
         f_label = self.f
@@ -149,7 +152,10 @@ class Statistics:
         img_draw.line(((0, 50), (length_of_image, 50)), fill="black", width=0)
         for i in range(1, number_of_values + 1):
             img_draw.line(((i * 65, 0), (i * 65, 100)), fill="black")
-        font = ImageFont.truetype("/fonts/NewYork.ttf", 20)
+        try:
+            font = ImageFont.truetype("/fonts/NewYork.ttf", 20)
+        except:
+            font = ImageFont.truetype("fonts\\NewYork.ttf", 20)
         x_label = self.x
         img_draw.text((length_of_image - 150 + 10, 15), x_label, font=font, fill=(0, 0, 0))
         f_label = self.f
