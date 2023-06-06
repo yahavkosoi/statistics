@@ -26,14 +26,18 @@ def getGradesAvg():
 def get_grades_list():
     url = inital.BASEURL + "grades"
     response = requests.request("GET", url, data=inital.payload(), headers=inital.getHeader('GET'))
-    grades = json.loads(response.text)
-    grade_list = []
-    for grade in grades:
-        try:
-            grade_list.append(grade['grade'])
-        except Exception as e:
-            pass
-    return grade_list
+    if response.status_code == 200:
+        grades = json.loads(response.text)
+        grade_list = []
+        for grade in grades:
+            try:
+                grade_list.append(grade['grade'])
+            except Exception as e:
+                pass
+        return grade_list
+    else:
+        print(response)
+
 def getSubjectList():
     url = inital.BASEURL + "grades"
     response = requests.request("GET", url, data=inital.payload(), headers=inital.getHeader('GET'))
