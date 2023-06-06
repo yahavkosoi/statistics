@@ -1,1 +1,1 @@
-mashov = {"username": '218776201', 'password': '4M63jUG1%TKP3', 'semel': '360123', 'year': '2023'}
+mashov = {"username": '', 'password':  'semel': '', 'year': '2023'}
